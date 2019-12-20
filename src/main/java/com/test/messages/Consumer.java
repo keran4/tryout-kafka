@@ -13,15 +13,15 @@ public class Consumer {
 
     private static final Logger logger = LoggerFactory.getLogger("Consumer");
 
-    /*//@KafkaListener(topics = "topicName", groupId = "foo")
-    @KafkaListener(topics = "${kafka.topic.name}")
+    //@KafkaListener(topics = "topicName", groupId = "foo")
+    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.1}")
     public void listen(String message) {
-        logger.info("======> Received Message: {}", message);
-    }*/
+        logger.info("^^^^^^^ Received Message from Listener: {}", message);
+    }
 
 
-    @KafkaListener(topics = "${kafka.topic.name}")
+    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
     public void listenWithHeaders(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
-        logger.info("======> Received Message: {} from partition: ", message, partition);
+        logger.info("******* Received Message Listener With Header: {} from partition: ", message, partition);
     }
 }

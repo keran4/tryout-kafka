@@ -20,7 +20,7 @@ public class KafkaConsumerConfig {
     @Value(value = "${kafka.bootstrap.address}")
     private String bootstrapAddress;
 
-    @Value("${kafka.group.id}")
+    @Value("${kafka.group.id.1}")
     private String groupId;
 
     @Bean
