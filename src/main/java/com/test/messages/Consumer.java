@@ -18,7 +18,6 @@ public class Consumer {
         logger.info("^^^^^^^ Received Message from Listener: {}", message);
     }
 
-
     @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
     public void listenWithHeaders1(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         logger.info("******* Received Message from Listener(1): {} from partition: {}", message, partition);
@@ -38,5 +37,4 @@ public class Consumer {
     public void listenWithHeaders4(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         logger.info("******* Received Message from Listener(4): {} from partition: {}", message, partition);
     }
-
 }
