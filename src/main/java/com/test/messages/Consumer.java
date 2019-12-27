@@ -13,7 +13,6 @@ public class Consumer {
 
     private static final Logger logger = LoggerFactory.getLogger("Consumer");
 
-    //@KafkaListener(topics = "topicName", groupId = "foo")
     @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.1}")
     public void listen(String message) {
         logger.info("^^^^^^^ Received Message from Listener: {}", message);
@@ -21,7 +20,23 @@ public class Consumer {
 
 
     @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
-    public void listenWithHeaders(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
-        logger.info("******* Received Message Listener With Header: {} from partition: ", message, partition);
+    public void listenWithHeaders1(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+        logger.info("******* Received Message from Listener(1): {} from partition: {}", message, partition);
     }
+
+    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
+    public void listenWithHeaders2(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+        logger.info("******* Received Message from Listener(2): {} from partition: {}", message, partition);
+    }
+
+    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
+    public void listenWithHeaders3(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+        logger.info("******* Received Message from Listener(3): {} from partition: {}", message, partition);
+    }
+
+    @KafkaListener(topics = "${kafka.topic.name}", groupId = "${kafka.group.id.2}")
+    public void listenWithHeaders4(@Payload String message, @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
+        logger.info("******* Received Message from Listener(4): {} from partition: {}", message, partition);
+    }
+
 }
